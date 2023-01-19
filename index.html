@@ -30,7 +30,7 @@
                 type="search"
                 class="form-control search-box"
                 id="search-city"
-                placeholder="🔍 The weather in..."
+                placeholder="The weather in..."
               />
             </div>
             <div class="col-3">
@@ -53,17 +53,28 @@
         </form>
         <div class="current-place">
           <h1 class="current-city"></h1>
-          <ul>
+          <ul class="small-grey">
             <li id="current-time"></li>
             <li id="weather-condition"></li>
           </ul>
-          <div class="current-weather">
-            <!-- <span class="weather-pic">☀️</span> -->
-            <span class="current-temp" id="current-temp"></span>
-            <span class="units">
-              <a href="#" id="celsius">ºC</a> |
-              <a href="#" id="fahrenheit">ºF</a>
-            </span>
+          <div class="row">
+            <div class="col-6">
+              <div class="current-weather">
+                <!-- <span class="weather-pic">☀️</span> -->
+                <span class="current-temp" id="current-temp"></span>
+                <span class="units">
+                  <a href="#" id="celsius">ºC</a> |
+                  <a href="#" id="fahrenheit">ºF</a>
+                </span>
+              </div>
+            </div>
+            <div class="col-6">
+              <ul class="small-grey">
+                <li id="precipitation">Precipitation:</li>
+                <li id="humidity">Humidity:</li>
+                <li id="wind">Wind:</li>
+              </ul>
+            </div>
           </div>
         </div>
 

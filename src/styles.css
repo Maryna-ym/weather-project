@@ -59,6 +59,9 @@ th {
 .current-weather {
   line-height: 1.5;
 }
+.small-grey {
+  font-size: 14px;
+}
 .table {
   margin-bottom: 0;
 }
