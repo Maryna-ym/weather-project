@@ -29,6 +29,7 @@ currentTime.innerHTML = showDate(new Date());
 
 function showActualTemp(response) {
   // City
+  console.log(response);
   document.querySelector("h1").innerHTML = response.data.name;
   // Temperature
   document.querySelector("#current-temp").innerHTML = Math.round(
@@ -38,8 +39,13 @@ function showActualTemp(response) {
   document.querySelector("#weather-condition").innerHTML =
     response.data.weather[0].main;
   // humidity
-  // precipitation
+  document.querySelector("#humidity").innerHTML = Math.round(
+    response.data.main.humidity
+  );
   // wind
+  document.querySelector("#wind").innerHTML = Math.round(
+    response.data.wind.speed
+  );
 }
 function defaultCity(city) {
   axios
