@@ -83,7 +83,11 @@ th {
   color: rgb(75, 75, 75);
   text-decoration: none;
 }
-.forecast-block {
+#forecast {
+  background-color: white;
+  padding: 5px 0px;
+  border-radius: 10px;
+  border: 1px solid rgb(75, 75, 75, 0.1);
   text-align: center;
 }
 .forecast-day {
