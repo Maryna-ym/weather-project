@@ -112,28 +112,40 @@ function showCelsiusTemp(event) {
   fahrenheitLink.classList.remove("active");
 }
 
+function nameDay(daynumber) {
+  let date = new Date(daynumber * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[day];
+}
+
 function dislayForecast(response) {
-  console.log(response.data.daily);
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
-  let days = ["Thu", "Fri", "Sat", "Sun"];
+
   let forecastHTML = "";
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      ` 
-          <div class="col-2 forecast-block">
-          <div class="forecast-day">${day}</div>
-          <img
-            src="http://openweathermap.org/img/wn/50d@2x.png"
-            alt=""
-            width="42"
-          />
-          <div class="forecast-temps">
-            <span class="forecast-temp-max"> 18° </span>
-            <span class="forecast-temp-min"> 12° </span>
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      let tempMax = Math.round(forecastDay.temp.max);
+      let tempMin = Math.round(forecastDay.temp.min);
+      let icon = forecastDay.weather[0].icon;
+      forecastHTML =
+        forecastHTML +
+        ` 
+            <div class="col-2 forecast-block">
+            <div class="forecast-day">${nameDay(forecastDay.dt)}</div>
+            <img
+              src="http://openweathermap.org/img/wn/${icon}@2x.png"
+              alt=""
+              width="42"
+            />
+            <div class="forecast-temps">
+              <span class="forecast-temp-max"> ${tempMax}° </span>
+              <span class="forecast-temp-min"> ${tempMin}° </span>
+            </div>
           </div>
-        </div>
-    `;
+      `;
+    }
   });
   forecastElement.innerHTML = forecastHTML;
 }
