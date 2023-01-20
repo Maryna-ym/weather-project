@@ -29,8 +29,13 @@ currentTime.innerHTML = showDate(new Date());
 
 function showActualTemp(response) {
   // City
-  console.log(response);
   document.querySelector("h1").innerHTML = response.data.name;
+  // Icon
+  let icon = response.data.weather[0].icon;
+  document
+    .querySelector("#icon")
+    .setAttribute("src", `http://openweathermap.org/img/wn/${icon}@2x.png`);
+
   // Temperature
   document.querySelector("#current-temp").innerHTML = Math.round(
     response.data.main.temp

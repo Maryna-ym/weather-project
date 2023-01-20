@@ -15,9 +15,13 @@ ul {
   list-style: none;
   padding-left: 0;
   margin-bottom: 0;
+  vertical-align: middle;
 }
 li {
   margin-left: 0;
+}
+li:first-letter {
+  text-transform: capitalize;
 }
 a {
   text-decoration: none;
@@ -27,7 +31,7 @@ th {
   color: #000;
 }
 .main-container {
-  max-width: 560px;
+  max-width: 600px;
   margin: 50px auto 10px auto;
 }
 .container {
@@ -45,22 +49,28 @@ th {
   margin: 0 auto;
 }
 .current-place {
-  margin: 30px 50px;
+  margin: 30px 20px;
   text-align: left;
 }
-.weather-pic {
-  display: inline;
-  font-size: 50px;
+.current-place img {
+  height: 64px;
+  width: 64px;
+  vertical-align: top;
+  margin-right: 5px;
+  margin-top: 5px;
 }
+
 .current-temp {
   display: inline;
-  font-size: 50px;
+  font-size: 64px;
+  line-height: 1em;
 }
-.current-weather {
-  line-height: 1.5;
-}
+
 .small-grey {
   font-size: 14px;
+}
+.units {
+  vertical-align: top;
 }
 .table {
   margin-bottom: 0;
