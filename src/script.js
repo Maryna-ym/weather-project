@@ -19,15 +19,20 @@ function showDate(date) {
   if (min < 10) {
     min = `0${min}`;
   }
-  return `${day}, ${hour}:${min}`;
+  let currentTime = document.querySelector("#current-time");
+  currentTime.innerHTML = `${day}, ${hour}:${min}`;
 }
-
-let currentTime = document.querySelector("#current-time");
-currentTime.innerHTML = showDate(new Date());
 
 // Weather Forecast
 
-function getForecast(coordinates) {}
+function getForecast(coordinates) {
+  let lat = coordinates.lat;
+  let lon = coordinates.lon;
+  let apiKeyF = "88724523008dc9e1be18f6eb6a959b67";
+  let apiUrlForecast = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKeyF}&units=metric`;
+
+  axios.get(`${apiUrlForecast}`).then(dislayForecast);
+}
 
 // Search city
 
@@ -58,17 +63,19 @@ function showActualTemp(response) {
   celsius = response.data.main.temp;
   getForecast(response.data.coord);
 }
+
 function defaultCity(city) {
   axios
-    .get(`${apiUrl}q=${city}&appid=${apiKey}&units=${units}`)
+    .get(`${apiUrl}q=${city}&appid=${apiKey}&units=metric`)
     .then(showActualTemp);
 }
+
 function cityFromSearch(event) {
   event.preventDefault();
   let city = document.querySelector("#search-city").value;
 
   axios
-    .get(`${apiUrl}q=${city}&appid=${apiKey}&units=${units}`)
+    .get(`${apiUrl}q=${city}&appid=${apiKey}&units=metric`)
     .then(showActualTemp);
 }
 
@@ -77,7 +84,7 @@ function cityFromLocation(position) {
   let long = position.coords.longitude;
 
   axios
-    .get(`${apiUrl}lat=${lat}&lon=${long}&appid=${apiKey}&units=${units}`)
+    .get(`${apiUrl}lat=${lat}&lon=${long}&appid=${apiKey}&units=metric`)
     .then(showActualTemp);
 }
 
@@ -85,16 +92,6 @@ function navigate(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(cityFromLocation);
 }
-
-let searchForm = document.querySelector("#search-form");
-searchForm.addEventListener("submit", cityFromSearch);
-
-let apiKey = "e5472a0ed17ff5f3e2802e3b1bb3fa27";
-let units = "metric";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?`;
-
-let currentLocation = document.querySelector("#current-btn");
-currentLocation.addEventListener("click", navigate);
 
 // Units temperature
 
@@ -115,7 +112,8 @@ function showCelsiusTemp(event) {
   fahrenheitLink.classList.remove("active");
 }
 
-function dislayForecast() {
+function dislayForecast(response) {
+  console.log(response.data.daily);
   let forecastElement = document.querySelector("#forecast");
   let days = ["Thu", "Fri", "Sat", "Sun"];
   let forecastHTML = "";
@@ -140,6 +138,17 @@ function dislayForecast() {
   forecastElement.innerHTML = forecastHTML;
 }
 
+// Global var
+
+let apiKey = "e5472a0ed17ff5f3e2802e3b1bb3fa27";
+let apiUrl = `https://api.openweathermap.org/data/2.5/weather?`;
+
+let searchForm = document.querySelector("#search-form");
+searchForm.addEventListener("submit", cityFromSearch);
+
+let currentLocation = document.querySelector("#current-btn");
+currentLocation.addEventListener("click", navigate);
+
 let fahrenheitLink = document.querySelector("#fahrenheit");
 fahrenheitLink.addEventListener("click", showFahrenTemp);
 
@@ -150,4 +159,4 @@ let celsius = null;
 
 defaultCity("Kyiv");
 
-dislayForecast();
+showDate(new Date());
