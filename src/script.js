@@ -25,6 +25,10 @@ function showDate(date) {
 let currentTime = document.querySelector("#current-time");
 currentTime.innerHTML = showDate(new Date());
 
+// Weather Forecast
+
+function getForecast(coordinates) {}
+
 // Search city
 
 function showActualTemp(response) {
@@ -52,6 +56,7 @@ function showActualTemp(response) {
     response.data.wind.speed
   );
   celsius = response.data.main.temp;
+  getForecast(response.data.coord);
 }
 function defaultCity(city) {
   axios
@@ -110,6 +115,31 @@ function showCelsiusTemp(event) {
   fahrenheitLink.classList.remove("active");
 }
 
+function dislayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let days = ["Thu", "Fri", "Sat", "Sun"];
+  let forecastHTML = "";
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      ` 
+          <div class="col-2 forecast-block">
+          <div class="forecast-day">${day}</div>
+          <img
+            src="http://openweathermap.org/img/wn/50d@2x.png"
+            alt=""
+            width="42"
+          />
+          <div class="forecast-temps">
+            <span class="forecast-temp-max"> 18° </span>
+            <span class="forecast-temp-min"> 12° </span>
+          </div>
+        </div>
+    `;
+  });
+  forecastElement.innerHTML = forecastHTML;
+}
+
 let fahrenheitLink = document.querySelector("#fahrenheit");
 fahrenheitLink.addEventListener("click", showFahrenTemp);
 
@@ -119,3 +149,5 @@ celsiusLink.addEventListener("click", showCelsiusTemp);
 let celsius = null;
 
 defaultCity("Kyiv");
+
+dislayForecast();

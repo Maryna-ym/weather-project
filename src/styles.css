@@ -72,6 +72,9 @@ th {
 .units {
   vertical-align: top;
 }
+.units a {
+  cursor: default;
+}
 .active {
   color: rgb(75, 75, 75);
   cursor: default;
@@ -80,6 +83,15 @@ th {
   color: rgb(75, 75, 75);
   text-decoration: none;
 }
-.table {
-  margin-bottom: 0;
+.forecast-block {
+  text-align: center;
+}
+.forecast-day {
+  font-size: 16px;
+}
+.forecast-temps {
+  font-size: 13px;
+}
+.forecast-temp-min {
+  opacity: 0.5;
 }
