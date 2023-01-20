@@ -51,6 +51,7 @@ function showActualTemp(response) {
   document.querySelector("#wind").innerHTML = Math.round(
     response.data.wind.speed
   );
+  celsius = response.data.main.temp;
 }
 function defaultCity(city) {
   axios
@@ -89,5 +90,32 @@ let apiUrl = `https://api.openweathermap.org/data/2.5/weather?`;
 
 let currentLocation = document.querySelector("#current-btn");
 currentLocation.addEventListener("click", navigate);
+
+// Units temperature
+
+function showFahrenTemp(event) {
+  event.preventDefault();
+  let temperature = document.querySelector("#current-temp");
+  let fahrTemp = celsius * 1.8 + 32;
+  temperature.innerHTML = Math.round(fahrTemp);
+  fahrenheitLink.classList.add("active");
+  celsiusLink.classList.remove("active");
+}
+
+function showCelsiusTemp(event) {
+  event.preventDefault();
+  let temperature = document.querySelector("#current-temp");
+  temperature.innerHTML = Math.round(celsius);
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+}
+
+let fahrenheitLink = document.querySelector("#fahrenheit");
+fahrenheitLink.addEventListener("click", showFahrenTemp);
+
+let celsiusLink = document.querySelector("#celsius");
+celsiusLink.addEventListener("click", showCelsiusTemp);
+
+let celsius = null;
 
 defaultCity("Kyiv");

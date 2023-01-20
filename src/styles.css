@@ -72,6 +72,14 @@ th {
 .units {
   vertical-align: top;
 }
+.active {
+  color: rgb(75, 75, 75);
+  cursor: default;
+}
+.active:hover {
+  color: rgb(75, 75, 75);
+  text-decoration: none;
+}
 .table {
   margin-bottom: 0;
 }
