@@ -41,7 +41,8 @@ th {
   border: 1px solid rgb(75, 75, 75, 0.1);
 }
 .source-link {
-  font-size: 14px;
+  font-size: 13px;
+  text-align: center;
 }
 .search-box {
   max-width: 400px;
@@ -71,17 +72,6 @@ th {
 }
 .units {
   vertical-align: top;
-}
-.units a {
-  cursor: default;
-}
-.active {
-  color: rgb(75, 75, 75);
-  cursor: default;
-}
-.active:hover {
-  color: rgb(75, 75, 75);
-  text-decoration: none;
 }
 #forecast {
   background-color: white;

@@ -93,25 +93,6 @@ function navigate(event) {
   navigator.geolocation.getCurrentPosition(cityFromLocation);
 }
 
-// Units temperature
-
-function showFahrenTemp(event) {
-  event.preventDefault();
-  let temperature = document.querySelector("#current-temp");
-  let fahrTemp = celsius * 1.8 + 32;
-  temperature.innerHTML = Math.round(fahrTemp);
-  fahrenheitLink.classList.add("active");
-  celsiusLink.classList.remove("active");
-}
-
-function showCelsiusTemp(event) {
-  event.preventDefault();
-  let temperature = document.querySelector("#current-temp");
-  temperature.innerHTML = Math.round(celsius);
-  celsiusLink.classList.add("active");
-  fahrenheitLink.classList.remove("active");
-}
-
 function nameDay(daynumber) {
   let date = new Date(daynumber * 1000);
   let day = date.getDay();
@@ -160,14 +141,6 @@ searchForm.addEventListener("submit", cityFromSearch);
 
 let currentLocation = document.querySelector("#current-btn");
 currentLocation.addEventListener("click", navigate);
-
-let fahrenheitLink = document.querySelector("#fahrenheit");
-fahrenheitLink.addEventListener("click", showFahrenTemp);
-
-let celsiusLink = document.querySelector("#celsius");
-celsiusLink.addEventListener("click", showCelsiusTemp);
-
-let celsius = null;
 
 defaultCity("Kyiv");
 
